@@ -1,0 +1,23 @@
+{
+	"name": "openai-agent",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"@openai/agents": "^0.3.3",
+		"cors": "^2.8.5",
+		"dotenv": "^17.2.3",
+		"express": "^5.1.0",
+		"openai": "^6.9.1",
+		"pino": "^10.1.0",
+		"pino-http": "^11.0.0",
+		"zod": "^3.25.76"
+	}
+}
