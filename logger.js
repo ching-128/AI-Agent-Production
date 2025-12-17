@@ -1,4 +1,5 @@
 import pino from "pino";
+import fs from "fs";
 
 // check if ./logs folder exists
 if (!fs.existsSync("./logs")) {
