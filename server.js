@@ -163,4 +163,6 @@ app.post("/api/chat", async (req, res) => {
 	res.end();
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(PORT, async () => {
+	console.log(`Listening on port ${PORT}`);
+});
