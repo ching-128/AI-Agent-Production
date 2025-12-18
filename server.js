@@ -8,13 +8,18 @@ import logger from "./logger.js";
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+
+// Body parser middleware - must come first
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+// CORS middleware
 app.use(
 	cors({
 		origin: "*",
 		exposedHeaders: ["Content-Type", "Transfer-Encoding"],
 	})
 );
-app.use(express.json());
 
 const weatherTool = tool({
 	name: "Weather",
@@ -119,14 +124,18 @@ const agent = new Agent({
 	tools: [weatherTool],
 });
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+	res.json({ status: "ok" });
+});
+
 // No auth, no token, no session
 app.post("/api/chat", async (req, res) => {
-	console.log(`${req.path} : ${req.method} : ${req.ip} : ${req.body.message}`);
 	// log
 	logger.info(req.body);
 
-	const message = req.body.message || "";
-	const sessionId = req.body.sessionId || null;
+	const message = req.body?.message || "";
+	const sessionId = req.body?.sessionId || null;
 
 	if (message.trim() === "") {
 		return res.json({ response: "Please provide a valid message." });
