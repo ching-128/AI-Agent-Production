@@ -121,6 +121,7 @@ const agent = new Agent({
 
 // No auth, no token, no session
 app.post("/api/chat", async (req, res) => {
+	console.log(`${req.path} : ${req.method} : ${req.ip} : ${req.body.message}`);
 	// log
 	logger.info(req.body);
 
